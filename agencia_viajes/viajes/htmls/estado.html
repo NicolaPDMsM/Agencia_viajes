@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estados</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Crear - Ver - Actualizar - Borrar | Estados</h2>
+        <div id="accordion">
+            <!-- Crear estados -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                        Crear estados
+                    </a>
+                </div>
+                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                    <div class="card-body">
+                        <form action="{% url 'add_estado' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="idEstado">Id del estado</label>
+                                <input type="number" name="idEstado" id="idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Ver a un estado -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                        Ver a un estado
+                    </a>
+                </div>
+                <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <h3 class="mb-3">Datos del estado</h3>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="buscarIdEstado">Buscar un estado por su Id</label>
+                                <input type="number" name="idEstado" id="buscarIdEstado" class="form-control" placeholder="Ingrese el Id del estado" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Buscar estado</button>
+                        </form>
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Actualizar a un estado -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                        Actualizar a un estado
+                    </a>
+                </div>
+                <div id="collapseThree" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="updateIdEstado">Id del estado</label>
+                                <input type="number" name="idEstado" id="updateIdEstado" class="form-control" placeholder="Solo ingrese números" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Borrar a un estado -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                        Borrar a un estado
+                    </a>
+                </div>
+                <div id="collapseFour" class="collapse" data-parent="#accordion">
+                    <div class="card-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="deleteIdEstado">Borrar un estado por el Id</label>
+                                <input type="number" name="idEstado" id="deleteIdEstado" class="form-control" placeholder="Ingrese el Id del estado" required>
+                            </div>
+                            <button type="submit" class="btn btn-danger btn-block">Borrar estado</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

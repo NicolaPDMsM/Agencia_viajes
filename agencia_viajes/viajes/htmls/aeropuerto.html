@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeropuerto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Crear - Ver - Actualizar - Borrar | Aeropuerto</h2>
+        <div id="accordion">
+    
+            <!-- Crear Aeropuerto -->
+            <div class="card mb-4" style="border-width: 2px;">
+                <div class="card-body">
+                    <h3>Crear Aeropuerto</h3>
+                    <form action="{% url 'add_aeropuerto' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="idAeropuerto">Id del aeropuerto</label>
+                                <input type="number" name="idAeropuerto" id="idAeropuerto" class="form-control" placeholder="Solo ingrese números" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="avionesDisponibles">Aviones disponibles</label>
+                                <input type="number" name="avionesDisponibles" id="avionesDisponibles" class="form-control" placeholder="Ingrese la cantidad de aviones" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="empleados">Números de empleados</label>
+                                <input type="number" name="empleados" id="empleados" class="form-control" placeholder="Cantidad de empleados" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="fk_idEstado">Id del estado</label>
+                                <input type="number" name="fk_idEstado" id="fk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="fk_idUsuario">Id del usuario</label>
+                                <input type="number" name="fk_idUsuario" id="fk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="fk_idFecha_hora">Id de la fecha</label>
+                                <input type="number" name="fk_idFecha_hora" id="fk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Crear Aeropuerto</button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Ver Aeropuerto -->
+            <div class="card mb-4" style="border-width: 2px;">
+                <div class="card-body">
+                    <h3>Ver Aeropuerto</h3>
+                    <form action="{% url 'read_aeropuerto' %}" method="post" class="form-inline mb-4">
+                        {% csrf_token %}
+                        <div class="form-group mb-2">
+                            <label for="buscarIdAeropuerto" class="mr-2">Buscar aeropuerto por Id</label>
+                            <input type="number" name="buscarIdAeropuerto" class="form-control" id="buscarIdAeropuerto" placeholder="Ingrese el Id del aeropuerto" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar Aeropuerto</button>
+                    </form>
+                    {% if idAeropuerto %}
+                    <table class="table table-bordered mb-4">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Aviones disponibles</th>
+                                <th>Número de empleados</th>
+                                <th>Id estado</th>
+                                <th>Id usuario</th>
+                                <th>Id Fecha Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ idAeropuerto }}</td>
+                                <td>{{ avionesDisponibles }}</td>
+                                <td>{{ empleados }}</td>
+                                <td>{{ idEstado }}</td>
+                                <td>{{ usuario }}</td>
+                                <td>{{ fechaHora.day }}-{{ fechaHora.month }}-{{ fechaHora.year }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+    
+            <!-- Actualizar Aeropuerto -->
+            <div class="card mb-4" style="border-width: 2px;">
+                <div class="card-body">
+                    <h3>Actualizar Aeropuerto</h3>
+                    <form action="{% url 'update_aeropuerto' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="updateIdAeropuerto">Id del aeropuerto</label>
+                                <input type="number" name="updateIdAeropuerto" value="{{ idAeropuerto}}" id="updateIdAeropuerto" class="form-control" placeholder="Solo ingrese números" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="updateAvionesDisponibles">Aviones disponibles</label>
+                                <input type="number" name="updateAvionesDisponibles" value="{{ avionesDisponibles }}" id="updateAvionesDisponibles" class="form-control" placeholder="Ingrese la cantidad de aviones" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="updateEmpleados">Números de empleados</label>
+                                <input type="number" name="updateEmpleados" value="{{ empleados }}" id="updateEmpleados" class="form-control" placeholder="Cantidad de empleados" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="updateFk_idEstado">Id del estado</label>
+                                <input type="number" name="updateFk_idEstado" value="{{ idEstado }}" id="updateFk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="updateFk_idUsuario">Id del usuario</label>
+                                <input type="number" name="updateFk_idUsuario" value="{{ idUsuario }}" id="updateFk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="updateFk_idFecha_hora">Id de la fecha</label>
+                                <input type="number" name="updateFk_idFecha_hora" value="{{ idFechaHora}}" id="updateFk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Actualizar Aeropuerto</button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Borrar Aeropuerto -->
+            <div class="card mb-4" style="border-width: 2px;">
+                <div class="card-body">
+                    <h3>Borrar Aeropuerto</h3>
+                    <form action="{% url 'delete_aeropuerto' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="deleteIdAeropuerto">Borrar aeropuerto por Id</label>
+                            <input type="number" name="deleteIdAeropuerto" class="form-control" id="deleteIdAeropuerto" placeholder="Ingrese el Id del aeropuerto" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block">Borrar Aeropuerto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>      
+</body>
+</html>

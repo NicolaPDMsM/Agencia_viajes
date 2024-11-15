@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fecha y Hora</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Crear - Ver - Actualizar - Borrar | Fecha Hora</h2>
+        
+        <!-- Crear Fecha Hora -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Crear Fecha Hora</h3>
+                <form action="{% url 'add_fecha_hora' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="idFechaHora">Id de la fecha hora</label>
+                            <input type="number" name="idFecha_hora" id="idFechaHora" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fechaHora">Ingrese la fecha y hora</label>
+                            <input type="datetime-local" name="fecha_hora" id="fechaHora" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Crear Fecha Hora</button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Ver Fecha Hora -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Ver Fecha y Hora</h3>
+                <form action="{% url 'read_fecha_hora' %}" method="POST" class="form-inline mb-4">
+                    {% csrf_token %}
+                    <div class="form-group mb-2">
+                        <label for="buscarFechaHoraId" class="mr-2">Buscar una fecha hora</label>
+                        <input type="number" name="buscarIdFechaHora" id="buscarFechaHoraId" class="form-control" placeholder="Ingrese el Id de la fecha hora" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar fecha y hora</button>
+                </form>
+                {% if idFechaHora %}
+                    <table class="table table-bordered mb-4">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Fecha y Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ idFechaHora }}</td>
+                                <td>{{ fechaHora.day }} / {{ fechaHora.month }} / {{ fechaHora.year }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    
+        <!-- Actualizar Fecha Hora -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Actualizar Fecha Hora</h3>
+                <form action="{% url 'update_fecha_hora' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateIdFechaHora">Id de la fecha hora</label>
+                            <input type="number" name="updateIdFechaHora" id="updateIdFechaHora" class="form-control" value="{{ idFechaHora }}" placeholder="Solo ingrese números" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateFechaHora">Ingrese la fecha y hora</label>
+                            <input type="datetime-local" name="updateFechaHora" id="updateFechaHora" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Actualizar Fecha Hora</button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Borrar Fecha Hora -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Borrar Fecha Hora</h3>
+                <form action="{% url 'delete_fecha_hora' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="deleteIdFechaHora">Borrar fecha hora por el Id</label>
+                        <input type="number" name="idFecha_hora" id="deleteIdFechaHora" class="form-control" placeholder="Ingrese el Id de la fecha hora" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">Borrar Fecha Hora</button>
+                </form>
+            </div>
+        </div>
+    </div>      
+</body>
+</html>
