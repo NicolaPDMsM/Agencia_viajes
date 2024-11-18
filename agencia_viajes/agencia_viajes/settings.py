@@ -56,7 +56,7 @@ TEMPLATES = [
     {
         
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/Nicolas/Desktop/djangoProject/Agencia_viajes/agencia_viajes/viajes/htmls'],
+        'DIRS': ['C:/Users/ALUMNO/Desktop/djangoProject/Agencia_viajes/agencia_viajes/viajes/htmls'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

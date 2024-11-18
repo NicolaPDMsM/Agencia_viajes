@@ -64,26 +64,26 @@
                     <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar usuario</button>
                 </form>
                 {% if idUsuario %}
-                <table class="table table-bordered mb-4">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Id</th>
-                            <th>Usuario</th>
-                            <th>Contraseña</th>
-                            <th>Id estado</th>
-                            <th>Id Fecha Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ idUsuario }}</td>
-                            <td>{{ username }}</td>
-                            <td>{{ password }}</td>
-                            <td>{{ idEstado }}</td>
-                            <td>{{ fechaHora.day }} / {{ fechaHora.month }} / {{ fechaHora.year }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-bordered mb-4">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Usuario</th>
+                                <th>Contraseña</th>
+                                <th>Id estado</th>
+                                <th>Id Fecha Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ idUsuario }}</td>
+                                <td>{{ username }}</td>
+                                <td>{{ password }}</td>
+                                <td>{{ idEstado }}</td>
+                                <td>{{ fechaHora.day }} / {{ fechaHora.month }} / {{ fechaHora.year }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 {% endif %}
     
                 <h4>Actualizar Usuario</h4>
