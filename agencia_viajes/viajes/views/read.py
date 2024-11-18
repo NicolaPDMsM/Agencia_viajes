@@ -66,3 +66,24 @@ def read_modeloAvion(request):
         }
         return render(request, "modelosAviones.html", ctx)
     return HttpResponse("Método no permitido", status=405)
+
+def read_avion(request):
+    if request.method == "POST":
+        id_avion = request.POST.get("buscarIdAvion")
+
+        objeto = get_object_or_404(Aviones, id_avion=id_avion)
+
+        ctx = {
+            "idAvion": objeto.id_avion,
+            "capacidad": objeto.capacidad,
+            "idAeropuerto": objeto.id_aeropuerto.id_aeropuerto,
+            "modelo": objeto.id_modelo.modelos,
+            "idModelo": objeto.id_modelo.id_modelo,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario
+        }
+        return render(request, "avion.html", ctx)
+    return HttpResponse("Método no permitido", status=405)

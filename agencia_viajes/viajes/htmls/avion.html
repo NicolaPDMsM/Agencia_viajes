@@ -69,7 +69,7 @@
                     <div class="container">
                         <h3>Datos del avion</h3>
                         <div class="form-group">
-                            <label for="buscarAvion">Buscar un avion por su Id</label>
+                            <label for="buscarIdAvion">Buscar un avion por su Id</label>
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <input type="number" name="buscarAvion" class="form-control" id="buscarAvion" placeholder="Ingrese el Id del avion" required>
@@ -84,8 +84,8 @@
                                     <th>Id aeropuerto</th>
                                     <th>Id modelo</th>
                                     <th>Id estado</th>
-                                    <th>Id usuario</th>
                                     <th>Id Fecha Hora</th>
+                                    <th>Id usuario</th>
                                 </tr>
                             </thead>
                             <tbody>
