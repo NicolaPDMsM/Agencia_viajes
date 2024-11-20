@@ -57,11 +57,14 @@ urlpatterns = [
     path('exito/adds-modelos-avion/', adds.add_modeloAvion, name="add_modeloAvion"),
     path('exito/delete-modelo-avion/', delete.delete_modeloAvion, name="delete_modeloAvion"),
     path('exito/read-modelo-avion/', read.read_modeloAvion, name="read_modeloAvion"),
-    path('exito/update-modelo-avion/', delete.delete_modeloAvion, name="update_modeloAvion"),
+    path('exito/update-modelo-avion/', update.update_modeloAvion, name="update_modeloAvion"),
 
     # Avión
     path('avion', forms.form_avion, name="avion"),
-    path('exito/avion/', adds.add_avion, name="add_avion"),
+    path('exito/adds-avion/', adds.add_avion, name="add_avion"),
+    path('exito/delete-avion/', delete.delete_avion, name="delete_avion"),
+    path('exito/read-avion/', read.read_avion, name="read_avion"),
+    path('exito/update-avion/', update.update_avion, name="update_avion"),
 
     # Asiento
     path('asiento', forms.form_asiento, name="asiento"),

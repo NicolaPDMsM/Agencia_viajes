@@ -10,156 +10,149 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Crear - Ver - Actualizar - Borrar | Asientos</h2>
-        <div id="accordion">
-            <!-- Crear Asientos -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                        Crear Asientos
-                    </a>
-                </div>
-                <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                    <div class="card-body">
-                        <form action="{% url 'add_asiento' %}" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="idAsiento">Id del asiento</label>
-                                <input type="text" name="idAsiento" id="idAsiento" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="clase">Clase</label>
-                                <input type="text" name="clase" id="clase" class="form-control" placeholder="Ingrese la clase del asiento" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="idAvion">Id del avion</label>
-                                <input type="number" name="idAvion" id="idAvion" class="form-control" placeholder="Id del avion al que pertenece" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idEstado">Id del estado</label>
-                                <input type="number" name="fk_idEstado" id="fk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idUsuario">Id del usuario</label>
-                                <input type="number" name="fk_idUsuario" id="fk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idFecha_hora">Id de la fecha</label>
-                                <input type="number" name="fk_idFecha_hora" id="fk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Crear - Ver - Actualizar - Borrar | Asientos</h2>
     
-            <!-- Ver Asientos -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                        Ver a un aeropuerto
-                    </a>
-                </div>
-                <div id="collapseTwo" class="collapse mb-3" data-parent="#accordion">
-                    <div class="container">
-                        <h3>Datos del Asiento</h3>
-                        <div class="form-group">
-                            <label for="buscarAsiento">Buscar a un asiento por su Id</label>
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                <input type="text" name="buscarAsiento" class="form-control" id="buscarAsiento" placeholder="Ingrese el Id del asiento" required>
-                                <button type="submit" class="btn btn-primary btn-block mt-2">Buscar asiento</button>
-                            </form>
+        <!-- Crear Asiento -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Crear Asiento</h3>
+                <form action="{% url 'add_asiento' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="idAsiento">Id del asiento</label>
+                            <input type="number" name="idAsiento" id="idAsiento" class="form-control" placeholder="Solo ingrese números" required>
                         </div>
-                        <table class="table mt-3">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Clase del asiento</th>
-                                    <th>Id avion</th>
-                                    <th>Id estado</th>
-                                    <th>Id usuario</th>
-                                    <th>Id Fecha Hora</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="form-group col-md-6">
+                            <label for="clase">Clase</label>
+                            <input type="text" name="clase" id="clase" class="form-control" placeholder="Ingrese la clase del asiento" required>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="idAvion">Id del avion</label>
+                            <input type="number" name="idAvion" id="idAvion" class="form-control" placeholder="Id del avion al que pertenece" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fk_idEstado">Id del estado</label>
+                            <input type="number" name="fk_idEstado" id="fk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="fk_idUsuario">Id del usuario</label>
+                            <input type="number" name="fk_idUsuario" id="fk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fk_idFecha_hora">Id de la fecha</label>
+                            <input type="number" name="fk_idFecha_hora" id="fk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Crear Asiento</button>
+                </form>
             </div>
+        </div>
     
-            <!-- Actualizar Asientos -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                        Actualizar a un Asiento
-                    </a>
-                </div>
-                <div id="collapseThree" class="collapse" data-parent="#accordion">
-                    <div class="container mb-3">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="updateIdAsiento">Id del asiento</label>
-                                <input type="text" name="updateIdAsiento" id="updateIdAsiento" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateClase">Clase</label>
-                                <input type="text" name="updateClase" id="updateClase" class="form-control" placeholder="Ingrese la clase del asiento" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateIdAvion">Id del avion</label>
-                                <input type="number" name="updateIdAvion" id="updateIdAvion" class="form-control" placeholder="Id del avion al que pertenece" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idEstado">Id del estado</label>
-                                <input type="number" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idUsuario">Id del usuario</label>
-                                <input type="number" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idFecha_hora">Id de la fecha</label>
-                                <input type="number" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
-                        </form>
+        <!-- Ver Asiento -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Ver Asiento</h3>
+                <form action="" method="post" class="form-inline mb-4">
+                    {% csrf_token %}
+                    <div class="form-group mb-2">
+                        <label for="buscarAsiento" class="mr-2">Buscar asiento por Id</label>
+                        <input type="number" name="buscarIdAsiento" id="buscarAsiento" class="form-control" placeholder="Ingrese el Id del asiento" required>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar Asiento</button>
+                </form>
+                {% if mensaje_error %}
+                    <p class="alert alert-warning">{{ mensaje_error }}</p>
+                {% endif %}
+                {% if idAsiento %}
+                <table class="table table-bordered mb-4">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Id</th>
+                            <th>Clase</th>
+                            <th>Id Avión</th>
+                            <th>Id Estado</th>
+                            <th>Id Usuario</th>
+                            <th>Id Fecha Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ idAsiento }}</td>
+                            <td>{{ clase }}</td>
+                            <td>{{ idAvion }}</td>
+                            <td>{{ idEstado }}</td>
+                            <td>{{ idUsuario }}</td>
+                            <td>{{ fechaHora.day }} / {{ fechaHora.month }} / {{ fechaHora.year }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% endif %}
             </div>
+        </div>
     
-            <!-- Borrar Asientos -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                        Borrar a un Asiento
-                    </a>
-                </div>
-                <div id="collapseFour" class="collapse mb-3" data-parent="#accordion">
-                    <div class="container">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="deleteIdAeropuerto">Borrar a un aeropuerto por el Id</label>
-                                <input type="text" name="deleteIdAeropuerto" class="form-control" id="deleteIdAeropuerto" placeholder="Ingrese el Id del aeropuerto" required>
-                            </div>
-                            <button type="submit" class="btn btn-danger btn-block">Borrar usuario</button>
-                        </form>
+        <!-- Actualizar Asiento -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Actualizar Asiento</h3>
+                <form action="{% url 'update_asiento' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateIdAsiento">Id del asiento</label>
+                            <input type="number" name="updateIdAsiento" id="updateIdAsiento" class="form-control" value="{{ idAsiento }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateClase">Clase</label>
+                            <input type="text" name="updateClase" id="updateClase" class="form-control" value="{{ clase }}" required>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateIdAvion">Id del avión</label>
+                            <input type="number" name="updateIdAvion" id="updateIdAvion" class="form-control" value="{{ idAvion }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idEstado">Id del estado</label>
+                            <input type="number" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" value="{{ idEstado }}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idUsuario">Id del usuario</label>
+                            <input type="number" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" value="{{ idUsuario }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idFecha_hora">Id de la fecha</label>
+                            <input type="number" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" value="{{ idFechaHora }}" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Actualizar Asiento</button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Borrar Asiento -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Borrar Asiento</h3>
+                <form action="{% url 'delete_asiento' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="deleteIdAsiento">Borrar asiento por Id</label>
+                        <input type="number" name="deleteIdAsiento" id="deleteIdAsiento" class="form-control" placeholder="Ingrese el Id del asiento" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">Borrar Asiento</button>
+                </form>
             </div>
         </div>
     </div>
+    
+    
 </body>
 </html>

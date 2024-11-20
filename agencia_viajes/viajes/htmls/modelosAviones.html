@@ -77,8 +77,8 @@
                                 <td>{{ idModelo }}</td>
                                 <td>{{ modelos }}</td>
                                 <td>{{ idEstado }}</td>
-                                <td>{{ fechaHora }}</td>
                                 <td>{{ usuario }}</td>
+                                <td>{{ fechaHora }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,31 +90,31 @@
         <div class="card mb-4" style="border-width: 2px;">
             <div class="card-body">
                 <h3>Actualizar modelo de avión</h3>
-                <form action="" method="post">
+                <form action="{% url 'update_modeloAvion' %}" method="post">
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="updateIdModeloAvion">Id del modelo avión</label>
-                            <input type="number" name="updateIdModeloAvion" id="updateIdModeloAvion" class="form-control" placeholder="Solo ingrese números" required>
+                            <input type="number" value="{{ idModelo }}" name="updateIdModeloAvion" id="updateIdModeloAvion" class="form-control" placeholder="Solo ingrese números" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="updateModelos">Modelo del avión</label>
-                            <input type="text" name="updateModelos" id="updateModelos" class="form-control" placeholder="Ingrese el modelo de avión" required>
+                            <input type="text" value="{{ modelos }}" name="updateModelos" id="updateModelos" class="form-control" placeholder="Ingrese el modelo de avión" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="updateFk_idEstado">Id del estado</label>
-                            <input type="number" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                            <input type="number" value="{{ idEstado }}" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="updateFk_idUsuario">Id del usuario</label>
-                            <input type="number" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
+                            <input type="number" value="{{ idUsuario }}" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="updateFk_idFecha_hora">Id de la fecha</label>
-                        <input type="number" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
+                        <input type="number" value="{{ idFechaHora }}" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Actualizar modelo de avión</button>
                 </form>

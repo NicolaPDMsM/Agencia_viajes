@@ -51,3 +51,33 @@ def delete_modeloAvion(request):
         else:
             return redirect("modeloAvion")
     return HttpResponse("Método no permitido", status=405)
+
+def delete_avion(request):
+    if request.method == "POST":
+        delete_id_avion = request.POST.get("deleteIdAvion")
+        objeto = get_object_or_404(Aviones, id_avion=delete_id_avion)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("avion")
+    return HttpResponse("Método no permitido", status=405)
+
+def delete_asiento(request):
+    if request.method == "POST":
+        delete_id_asiento = request.POST.get("deleteIdAsiento")
+        objeto = get_object_or_404(Asientos, id_asiento=delete_id_asiento)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("asiento")
+    return HttpResponse("Método no permitido", status=405)
