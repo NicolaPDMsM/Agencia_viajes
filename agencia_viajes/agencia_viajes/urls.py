@@ -68,33 +68,57 @@ urlpatterns = [
 
     # Asiento
     path('asiento', forms.form_asiento, name="asiento"),
-    path('exito/asiento/', adds.add_asiento, name="add_asiento"),
+    path('exito/adds-asiento/', adds.add_asiento, name="add_asiento"),
+    path('exito/delete-asiento/', delete.delete_asiento, name="delete_asiento"),
+    path('exito/read-asiento/', read.read_asiento, name="read_asiento"),
+    path('exito/update-asiento/', update.update_asiento, name="update_asiento"),
 
     # Pasajero
     path('pasajero', forms.form_pasajero, name="pasajero"),
     path('exito/adds-pasajero/', adds.add_pasajero, name="add_pasajero"),
-
-    # Checkin
-    path('checkin', forms.form_checkin, name="checkin"),
-    path('exito/adds-checkin/', adds.add_checkin, name="add_checkin"),
+    path('exito/delete-pasajero/', delete.delete_pasajero, name="delete_pasajero"),
+    path('exito/read-pasajero/', read.read_pasajero, name="read_pasajero"),
+    path('exito/update-pasajero/', update.update_pasajero, name="update_pasajero"),
 
     # Equipaje
     path('equipaje', forms.form_equipaje, name="equipaje"),
     path('exito/adds-equipaje/', adds.add_equipaje, name="add_equipaje"),
+    path('exito/delete-equipaje/', delete.delete_equipaje, name="delete_equipaje"),
+    path('exito/read-equipaje/', read.read_equipaje, name="read_equipaje"),
+    path('exito/update-equipaje/', update.update_equipaje, name="update_equipaje"),
 
     # Vuelo
     path('vuelo', forms.form_vuelo, name="vuelo"),
     path('exito/adds-vuelo/', adds.add_vuelo, name="add_vuelo"),
+    path('exito/delete-vuelo/', delete.delete_vuelo, name="delete_vuelo"),
+    path('exito/read-vuelo/', read.read_vuelo, name="read_vuelo"),
+    path('exito/update-vuelo/', update.update_vuelo, name="update_vuelo"),
+
+    # Checkin
+    path('checkin', forms.form_checkin, name="checkin"),
+    path('exito/adds-checkin/', adds.add_checkin, name="add_checkin"),
+    path('exito/delete-checkin/', delete.delete_checkin, name="delete_checkin"),
+    path('exito/read-checkin/', read.read_checkin, name="read_checkin"),
+    path('exito/update-checkin/', update.update_checkin, name="update_checkin"),
 
     # Pasaje
     path('pasaje', forms.form_pasaje, name="pasaje"),
     path('exito/adds-pasaje/', adds.add_pasaje, name="add_pasaje"),
+    path('exito/delete-pasaje/', adds.add_pasaje, name="add_pasaje"),
+    path('exito/read-pasaje/', adds.add_pasaje, name="add_pasaje"),
+    path('exito/update-pasaje/', adds.add_pasaje, name="add_pasaje"),
 
     # Tarjeta embarque
     path('tarjeta-embarque', forms.form_tarjetaEmbarque, name="tarjeta_embarque"),
     path('exito/adds-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
+    path('exito/delete-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
+    path('exito/read-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
+    path('exito/update-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
 
     # Transfer
     path('transfer', forms.form_transfer, name="transfer"),
     path('exito/adds-transfer/', adds.add_transfer, name="add_transfer"),
+    path('exito/delete-transfer/', adds.add_transfer, name="add_transfer"),
+    path('exito/read-transfer/', adds.add_transfer, name="add_transfer"),
+    path('exito/update-transfer/', adds.add_transfer, name="add_transfer"),
 ]

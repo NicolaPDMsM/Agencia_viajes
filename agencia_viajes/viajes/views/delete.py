@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from viajes.models import Usuario, Estado, FechaHora, Aeropuerto, ModelosAviones, Aviones, Asientos
+from viajes.models import Usuario, Estado, FechaHora, Aeropuerto, ModelosAviones, Aviones, Asientos, Pasajeros, Checkin, Equipaje, Vuelos, Pasajes, TarjetaEmbarque, Transfer
 
 def delete_usuario(request):
     if request.method == "POST":
@@ -80,4 +80,64 @@ def delete_asiento(request):
             return redirect("exito")
         else:
             return redirect("asiento")
+    return HttpResponse("Método no permitido", status=405)
+
+def delete_pasajero(request):
+    if request.method == "POST":
+        delete_rut_pasajero = request.POST.get("deleteRutPasajero")
+        objeto = get_object_or_404(Pasajeros, rut_pasajero=delete_rut_pasajero)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("pasajero")
+    return HttpResponse("Método no permitido", status=405)
+
+def delete_equipaje(request):
+    if request.method == "POST":
+        delete_id_equipaje = request.POST.get("deleteIdEquipaje")
+        objeto = get_object_or_404(Equipaje, id_equipaje=delete_id_equipaje)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("equipaje")
+    return HttpResponse("Método no permitido", status=405)
+
+def delete_vuelo(request):
+    if request.method == "POST":
+        delete_id_vuelo = request.POST.get("deleteIdVuelo")
+        objeto = get_object_or_404(Vuelos, id_vuelo=delete_id_vuelo)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("vuelo")
+    return HttpResponse("Método no permitido", status=405)
+
+def delete_checkin(request):
+    if request.method == "POST":
+        delete_rut_pasajero = request.POST.get("deleteIdCheckin")
+        objeto = get_object_or_404(Pasajeros, rut_pasajero=delete_rut_pasajero)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("checkin")
     return HttpResponse("Método no permitido", status=405)

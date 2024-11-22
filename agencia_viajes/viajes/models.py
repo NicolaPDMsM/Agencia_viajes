@@ -39,7 +39,7 @@ class Aviones(models.Model):
     id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     
 class Asientos(models.Model):
-    id_asiento = models.CharField(primary_key=True, max_length=5)
+    id_asiento = models.IntegerField(primary_key=True)
     clase = models.CharField(max_length=20, null=True, blank=True)
     id_avion = models.ForeignKey(Aviones, on_delete=models.CASCADE)
     id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
@@ -51,14 +51,6 @@ class Pasajeros(models.Model):
     nombre = models.CharField(max_length=30, null=True, blank=True)
     apellido = models.CharField(max_length=30, null=True, blank=True)
     id_aeropuerto = models.ForeignKey(Aeropuerto, on_delete=models.CASCADE)
-    id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
-    id_fecha_hora = models.ForeignKey(FechaHora, on_delete=models.CASCADE)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-
-class Checkin(models.Model):
-    id_checkin = models.IntegerField(primary_key=True)
-    hora_checkin = models.DateTimeField(null=True, blank=True)
-    rut_pasajero = models.ForeignKey(Pasajeros, on_delete=models.CASCADE)
     id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
     id_fecha_hora = models.ForeignKey(FechaHora, on_delete=models.CASCADE)
     id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -75,6 +67,14 @@ class Vuelos(models.Model):
     id_vuelo = models.IntegerField(primary_key=True)
     hora_vuelo = models.DateTimeField(null=True, blank=True)
     id_avion = models.ForeignKey(Aviones, on_delete=models.CASCADE)
+    id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    id_fecha_hora = models.ForeignKey(FechaHora, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+
+class Checkin(models.Model):
+    id_checkin = models.IntegerField(primary_key=True)
+    id_vuelo = models.ForeignKey(Vuelos, on_delete=models.CASCADE, null=True)
+    rut_pasajero = models.ForeignKey(Pasajeros, on_delete=models.CASCADE)
     id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
     id_fecha_hora = models.ForeignKey(FechaHora, on_delete=models.CASCADE)
     id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)

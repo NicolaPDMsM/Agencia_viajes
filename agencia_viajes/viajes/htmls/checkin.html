@@ -10,156 +10,144 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Crear - Ver - Actualizar - Borrar | Checkin</h2>
-        <div id="accordion">
-            <!-- Crear Checkin -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                        Crear Checkin
-                    </a>
-                </div>
-                <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                    <div class="card-body">
-                        <form action="{% url 'add_checkin' %}" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="idCheckin">Id del checkin</label>
-                                <input type="number" name="idCheckin" id="idCheckin" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="horaCheckin">Hora del checkin</label>
-                                <input type="datetime-local" name="horaCheckin" id="horaCheckin" class="form-control" placeholder="Ingrese la hora del checkin" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="rutPasajero">Rut del pasajero</label>
-                                <input type="number" name="rutPasajero" id="rutPasajero" class="form-control" placeholder="Rut del pasajero" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idEstado">Id del estado</label>
-                                <input type="number" name="fk_idEstado" id="fk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idUsuario">Id del usuario</label>
-                                <input type="number" name="fk_idUsuario" id="fk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idFecha_hora">Id de la fecha</label>
-                                <input type="number" name="fk_idFecha_hora" id="fk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Crear - Ver - Actualizar - Borrar | Checkin</h2>
     
-            <!-- Ver Checkin -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                        Ver Checkin
-                    </a>
-                </div>
-                <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                    <div class="container">
-                        <h3>Datos del Checkin</h3>
-                        <div class="form-group">
-                            <label for="buscarCheckin">Buscar un Checkin por su Id</label>
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                <input type="number" name="buscarCheckin" class="form-control" id="buscarCheckin" placeholder="Ingrese el Id del Checkin" required>
-                                <button type="submit" class="btn btn-primary btn-block mt-2">Buscar Checkin</button>
-                            </form>
+        <!-- Crear Checkin -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Crear Checkin</h3>
+                <form action="{% url 'add_checkin' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="idCheckin">Id del checkin</label>
+                            <input type="number" name="idCheckin" id="idCheckin" class="form-control" placeholder="Solo ingrese números" required>
                         </div>
-                        <table class="table mt-3">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Hora Checkin</th>
-                                    <th>Rut pasajero</th>
-                                    <th>Id estado</th>
-                                    <th>Id usuario</th>
-                                    <th>Id Fecha Hora</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="form-group col-md-6">
+                            <label for="idVuelo">Id del vuelo</label>
+                            <input type="number" name="idVuelo" id="idVuelo" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
                     </div>
-                </div>
-            </div>
-    
-            <!-- Actualizar Checkin -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                        Actualizar Checkin
-                    </a>
-                </div>
-                <div id="collapseThree" class="collapse" data-parent="#accordion">
-                    <div class="container">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="updateIdCheckin">Id del checkin</label>
-                                <input type="number" name="updateIdCheckin" id="updateIdCheckin" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateHoraCheckin">Hora del checkin</label>
-                                <input type="datetime-local" name="updateHoraCheckin" id="updateHoraCheckin" class="form-control" placeholder="Ingrese la hora del checkin" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateRutPasajero">Rut del pasajero</label>
-                                <input type="number" name="updateRutPasajero" id="updateRutPasajero" class="form-control" placeholder="Rut del pasajero" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idEstado">Id del estado</label>
-                                <input type="number" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idUsuario">Id del usuario</label>
-                                <input type="number" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idFecha_hora">Id de la fecha</label>
-                                <input type="number" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
-                        </form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="rutPasajero">Rut del pasajero</label>
+                            <input type="number" name="rutPasajero" id="rutPasajero" class="form-control" placeholder="Rut del pasajero" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fk_idEstado">Id del estado</label>
+                            <input type="number" name="fk_idEstado" id="fk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
                     </div>
-                </div>
-            </div>
-    
-            <!-- Borrar Checkin -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                        Borrar un Checkin
-                    </a>
-                </div>
-                <div id="collapseFour" class="collapse" data-parent="#accordion">
-                    <div class="container">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="deleteIdCheckin">Borrar un Checkin por el Id</label>
-                                <input type="number" name="deleteIdCheckin" class="form-control" id="deleteIdCheckin" placeholder="Ingrese el Id del Checkin" required>
-                            </div>
-                            <button type="submit" class="btn btn-danger btn-block">Borrar Checkin</button>
-                        </form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="fk_idUsuario">Id del usuario</label>
+                            <input type="number" name="fk_idUsuario" id="fk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fk_idFecha_hora">Id de la fecha</label>
+                            <input type="number" name="fk_idFecha_hora" id="fk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
+                        </div>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-primary btn-block">Crear Checkin</button>
+                </form>
             </div>
         </div>
-    </div>    
+    
+        <!-- Ver Checkin -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Ver Checkin</h3>
+                <form action="" method="post" class="form-inline mb-4">
+                    {% csrf_token %}
+                    <div class="form-group mb-2">
+                        <label for="buscarIdCheckin" class="mr-2">Buscar un Checkin por su Id</label>
+                        <input type="number" name="buscarIdCheckin" id="buscarIdCheckin" class="form-control" placeholder="Ingrese el Id del Checkin" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar Checkin</button>
+                </form>
+                {% if idCheckin %}
+                    <table class="table table-bordered mb-4">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Id vuelo</th>
+                                <th>Rut pasajero</th>
+                                <th>Id estado</th>
+                                <th>Id usuario</th>
+                                <th>Id Fecha Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ idCheckin }}</td>
+                                <td>{{ idVuelo }}</td>
+                                <td>{{ rutPasajero }}</td>
+                                <td>{{ idEstado }}</td>
+                                <td>{{ usuario }}</td>
+                                <td>{{ fechaHora.day }}-{{ fechaHora.month }}-{{ fechaHora.year }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    
+        <!-- Actualizar Checkin -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Actualizar Checkin</h3>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateIdCheckin">Id del checkin</label>
+                            <input type="number" value="{{ idCheckin }}" name="updateIdCheckin" id="updateIdCheckin" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateIdVuelo">Id del vuelo</label>
+                            <input type="number" value="{{ idVuelo }}" name="updateIdVuelo" id="updateIdVuelo" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateRutPasajero">Rut del pasajero</label>
+                            <input type="number" value="{{ rutPasajero }}" name="updateRutPasajero" id="updateRutPasajero" class="form-control" placeholder="Rut del pasajero" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idEstado">Id del estado</label>
+                            <input type="number" value="{{ idEstado }}" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idUsuario">Id del usuario</label>
+                            <input type="number" value="{{ idUsuario }}" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idFecha_hora">Id de la fecha</label>
+                            <input type="number" value="{{ idFechaHora }}" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Actualizar Checkin</button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Borrar Checkin -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Borrar Checkin</h3>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="deleteIdCheckin">Borrar un Checkin por el Id</label>
+                        <input type="number" name="deleteIdCheckin" class="form-control" id="deleteIdCheckin" placeholder="Ingrese el Id del Checkin" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">Borrar Checkin</button>
+                </form>
+            </div>
+        </div>
+    </div>       
 </body>
 </html>

@@ -10,156 +10,144 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Crear - Ver - Actualizar - Borrar | Equipaje</h2>
-        <div id="accordion">
-            <!-- Crear Equipaje -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                        Crear Equipaje
-                    </a>
-                </div>
-                <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                    <div class="card-body">
-                        <form action="{% url 'add_equipaje' %}" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="idEquipaje">Id del equipaje</label>
-                                <input type="number" name="idEquipaje" id="idEquipaje" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="equipaje">Peso del equipaje</label>
-                                <input type="number" name="equipaje" id="equipaje" class="form-control" placeholder="Ingrese el peso del equipaje en kg" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="rutPasajero">Rut del pasajero</label>
-                                <input type="number" name="rutPasajero" id="rutPasajero" class="form-control" placeholder="Rut del pasajero" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idEstado">Id del estado</label>
-                                <input type="number" name="fk_idEstado" id="fk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idUsuario">Id del usuario</label>
-                                <input type="number" name="fk_idUsuario" id="fk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fk_idFecha_hora">Id de la fecha</label>
-                                <input type="number" name="fk_idFecha_hora" id="fk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Crear - Ver - Actualizar - Borrar | Equipaje</h2>
     
-            <!-- Ver Asientos -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                        Ver Equipaje
-                    </a>
-                </div>
-                <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                    <div class="container">
-                        <h3>Datos del Equipaje</h3>
-                        <div class="form-group">
-                            <label for="buscarEquipaje">Buscar un Equipaje por su Id</label>
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                <input type="number" name="buscarEquipaje" class="form-control" id="buscarEquipaje" placeholder="Ingrese el Id del Equipaje" required>
-                                <button type="submit" class="btn btn-primary btn-block mt-2">Buscar Equipaje</button>
-                            </form>
+        <!-- Crear Equipaje -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Crear Equipaje</h3>
+                <form action="{% url 'add_equipaje' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="idEquipaje">Id del equipaje</label>
+                            <input type="number" name="idEquipaje" id="idEquipaje" class="form-control" placeholder="Solo ingrese números" required>
                         </div>
-                        <table class="table mt-3">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Peso del quipaje</th>
-                                    <th>Rut pasajero</th>
-                                    <th>Id estado</th>
-                                    <th>Id usuario</th>
-                                    <th>Id Fecha Hora</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="form-group col-md-6">
+                            <label for="equipaje">Peso del equipaje</label>
+                            <input type="number" name="equipaje" id="equipaje" class="form-control" placeholder="Ingrese el peso del equipaje en kg" required>
+                        </div>
                     </div>
-                </div>
-            </div>
-    
-            <!-- Actualizar Equipaje -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                        Actualizar Equipaje
-                    </a>
-                </div>
-                <div id="collapseThree" class="collapse" data-parent="#accordion">
-                    <div class="container">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="updateIdEquipaje">Id del equipaje</label>
-                                <input type="number" name="updateIdEquipaje" id="updateIdEquipaje" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateEquipaje">Peso del equipaje</label>
-                                <input type="number" name="updateEquipaje" id="updateEquipaje" class="form-control" placeholder="Ingrese el peso del equipaje en kg" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateRutPasajero">Rut del pasajero</label>
-                                <input type="number" name="updateRutPasajero" id="updateRutPasajero" class="form-control" placeholder="Rut del pasajero" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idEstado">Id del estado</label>
-                                <input type="number" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idUsuario">Id del usuario</label>
-                                <input type="number" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="updateFk_idFecha_hora">Id de la fecha</label>
-                                <input type="number" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
-                        </form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="rutPasajero">Rut del pasajero</label>
+                            <input type="number" name="rutPasajero" id="rutPasajero" class="form-control" placeholder="Rut del pasajero" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fk_idEstado">Id del estado</label>
+                            <input type="number" name="fk_idEstado" id="fk_idEstado" class="form-control" placeholder="Solo ingrese números" required>
+                        </div>
                     </div>
-                </div>
-            </div>
-    
-            <!-- Borrar Equipaje -->
-            <div class="card mb-3">
-                <div class="card-header">
-                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
-                        Borrar un Equipaje
-                    </a>
-                </div>
-                <div id="collapseFour" class="collapse" data-parent="#accordion">
-                    <div class="container">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="deleteIdEquipaje">Borrar un Equipaje por el Id</label>
-                                <input type="number" name="deleteIdEquipaje" class="form-control" id="deleteIdEquipaje" placeholder="Ingrese el Id del Equipaje" required>
-                            </div>
-                            <button type="submit" class="btn btn-danger btn-block">Borrar Equipaje</button>
-                        </form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="fk_idUsuario">Id del usuario</label>
+                            <input type="number" name="fk_idUsuario" id="fk_idUsuario" class="form-control" placeholder="Ingrese el id del usuario creador" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="fk_idFecha_hora">Id de la fecha</label>
+                            <input type="number" name="fk_idFecha_hora" id="fk_idFecha_hora" class="form-control" placeholder="Ingrese el id de la fecha" required>
+                        </div>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-primary btn-block">Crear Equipaje</button>
+                </form>
             </div>
         </div>
-    </div>    
+    
+        <!-- Ver Equipaje -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Ver Equipaje</h3>
+                <form action="{% url 'read_equipaje' %}" method="post" class="form-inline mb-4">
+                    {% csrf_token %}
+                    <div class="form-group mb-2">
+                        <label for="buscarIdEquipaje" class="mr-2">Buscar un Equipaje por su Id</label>
+                        <input type="number" name="buscarIdEquipaje" class="form-control" id="buscarIdEquipaje" placeholder="Ingrese el Id del Equipaje" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar Equipaje</button>
+                </form>
+                {% if idEquipaje %}
+                    <table class="table table-bordered mb-4">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Peso del Equipaje</th>
+                                <th>Rut Pasajero</th>
+                                <th>Id Estado</th>
+                                <th>Id Usuario</th>
+                                <th>Id Fecha Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ idEquipaje }}</td>
+                                <td>{{ pesoEquipaje }}</td>
+                                <td>{{ rutPasajero }}</td>
+                                <td>{{ idEstado }}</td>
+                                <td>{{ usuario }}</td>
+                                <td>{{ fechaHora.day }}-{{ fechaHora.month }}-{{ fechaHora.year }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    
+        <!-- Actualizar Equipaje -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Actualizar Equipaje</h3>
+                <form action="{% url 'update_equipaje' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateIdEquipaje">Id del equipaje</label>
+                            <input type="number" name="updateIdEquipaje" id="updateIdEquipaje" class="form-control" value="{{ idEquipaje }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateEquipaje">Peso del equipaje</label>
+                            <input type="number" name="updateEquipaje" id="updateEquipaje" class="form-control" value="{{ pesoEquipaje }}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateRutPasajero">Rut del pasajero</label>
+                            <input type="number" name="updateRutPasajero" id="updateRutPasajero" class="form-control" value="{{ rutPasajero }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idEstado">Id del estado</label>
+                            <input type="number" name="updateFk_idEstado" id="updateFk_idEstado" class="form-control" value="{{ idEstado }}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idUsuario">Id del usuario</label>
+                            <input type="number" name="updateFk_idUsuario" id="updateFk_idUsuario" class="form-control" value="{{ idUsuario }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="updateFk_idFecha_hora">Id de la fecha</label>
+                            <input type="number" name="updateFk_idFecha_hora" id="updateFk_idFecha_hora" class="form-control" value="{{ idFechaHora }}" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Actualizar Equipaje</button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Borrar Equipaje -->
+        <div class="card mb-4" style="border-width: 2px;">
+            <div class="card-body">
+                <h3>Borrar Equipaje</h3>
+                <form action="{% url 'delete_equipaje' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="deleteIdEquipaje">Borrar un Equipaje por el Id</label>
+                        <input type="number" name="deleteIdEquipaje" class="form-control" id="deleteIdEquipaje" placeholder="Ingrese el Id del Equipaje" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-block">Borrar Equipaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -27,11 +27,9 @@ def add_estado(request):
     if request.method == "POST":
         id_estado = request.POST["idEstado"]
 
-        nuevo_estado = Estado(
+        nuevo_estado = Estado.objects.create(
             id_estado=id_estado
         )
-        nuevo_estado.save()
-        
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -40,13 +38,10 @@ def add_fecha_hora(request):
         id_fecha_hora = request.POST["idFecha_hora"]
         fecha_hora = request.POST["fecha_hora"]
 
-        nuevo_fecha_hora = FechaHora(
+        nuevo_fecha_hora = FechaHora.objects.create(
             id_fecha_hora = id_fecha_hora,
             fecha_hora = fecha_hora
 	    )
-
-        nuevo_fecha_hora.save()
-
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -86,16 +81,13 @@ def add_modeloAvion(request):
         usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
         fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
 
-        nuevo_modeloAvion = ModelosAviones(
+        nuevo_modeloAvion = ModelosAviones.objects.create(
             id_modelo = id_modelo,
             modelos = modelos,
             id_estado = estado,
             id_usuario = usuario,
             id_fecha_hora = fecha_hora
         )
-
-        nuevo_modeloAvion.save()
-        
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -115,7 +107,7 @@ def add_avion(request):
         fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
         usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
 
-        nuevo_avion = Aviones(
+        nuevo_avion = Aviones.objects.create(
             id_avion = id_avion,
             capacidad = capacidad,
             id_aeropuerto = aeropuerto,
@@ -124,9 +116,6 @@ def add_avion(request):
             id_fecha_hora = fecha_hora,
             id_usuario = usuario
         )
-
-        nuevo_avion.save()
-
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -144,7 +133,7 @@ def add_asiento(request):
         fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
         usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
 
-        nuevo_avion = Asientos(
+        nuevo_avion = Asientos.objects.create(
             id_asiento = id_asiento,
             clase = clase,
             id_avion = avion,
@@ -152,9 +141,6 @@ def add_asiento(request):
             id_fecha_hora = fecha_hora,
             id_usuario = usuario
         )
-
-        nuevo_avion.save()
-
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -165,15 +151,15 @@ def add_pasajero(request):
         apellido = request.POST.get("apellido")
         id_aeropuerto = request.POST.get("idAeropuerto")
         id_estado = request.POST.get("fk_idEstado")
-        id_fecha_hora = request.POST.get("fk_idUsuario")
-        id_usuario = request.POST.get("fk_idFecha_hora")
+        id_fecha_hora = request.POST.get("fk_idFecha_hora")
+        id_usuario = request.POST.get("fk_idUsuario")
 
         aeropuerto = get_object_or_404(Aeropuerto, id_aeropuerto=id_aeropuerto)
         estado = get_object_or_404(Estado, id_estado=id_estado)
         fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
         usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
 
-        nuevo_pasajero = Pasajeros(
+        nuevo_pasajero = Pasajeros.objects.create(
             rut_pasajero = rut_pasajero,
             nombre = nombre,
             apellido = apellido,
@@ -182,37 +168,6 @@ def add_pasajero(request):
             id_fecha_hora = fecha_hora,
             id_usuario = usuario
         )
-
-        nuevo_pasajero.save()
-
-        return redirect("exito")
-    return HttpResponse("Método no permitido", status=405)
-
-def add_checkin(request):
-    if request.method == "POST":
-        id_checkin = request.POST.get("idCheckin")
-        hora_checkin = request.POST.get("horaCheckin")
-        rut_pasajero = request.POST.get("rutPasajero")
-        id_estado = request.POST.get("fk_idEstado")
-        id_fecha_hora = request.POST.get("fk_idUsuario")
-        id_usuario = request.POST.get("fk_idFecha_hora")
-        
-        pasajero = get_object_or_404(Pasajeros, rut_pasajero=rut_pasajero)
-        estado = get_object_or_404(Estado, id_estado=id_estado)
-        fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
-        usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
-
-        nuevo_checkin = Checkin(
-            id_checkin = id_checkin,
-            hora_checkin = hora_checkin,
-            rut_pasajero = pasajero,
-            id_estado = estado,
-            id_fecha_hora = fecha_hora,
-            id_usuario = usuario
-        )
-
-        nuevo_checkin.save()
-
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -222,15 +177,15 @@ def add_equipaje(request):
         peso_equipaje = request.POST.get("equipaje")
         rut_pasajero = request.POST.get("rutPasajero")
         id_estado = request.POST.get("fk_idEstado")
-        id_fecha_hora = request.POST.get("fk_idUsuario")
-        id_usuario = request.POST.get("fk_idFecha_hora")
+        id_fecha_hora = request.POST.get("fk_idFecha_hora")
+        id_usuario = request.POST.get("fk_idUsuario")
 
         pasajero = get_object_or_404(Pasajeros, rut_pasajero=rut_pasajero)
         estado = get_object_or_404(Estado, id_estado=id_estado)
         fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
         usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
 
-        nuevo_equipaje = Equipaje(
+        nuevo_equipaje = Equipaje.objects.create(
             id_equipaje = id_equipaje,
             peso_equipaje = peso_equipaje,
             rut_pasajero = pasajero,
@@ -238,9 +193,6 @@ def add_equipaje(request):
             id_fecha_hora = fecha_hora,
             id_usuario = usuario
         )
-
-        nuevo_equipaje.save()
-
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -250,15 +202,15 @@ def add_vuelo(request):
         hora_vuelo = request.POST.get("horaVuelo")
         id_avion = request.POST.get("idAvion")
         id_estado = request.POST.get("fk_idEstado")
-        id_fecha_hora = request.POST.get("fk_idUsuario")
-        id_usuario = request.POST.get("fk_idFecha_hora")
+        id_fecha_hora = request.POST.get("fk_idFecha_hora")
+        id_usuario = request.POST.get("fk_idUsuario")
 
         avion = get_object_or_404(Aviones, id_avion=id_avion)
         estado = get_object_or_404(Estado, id_estado=id_estado)
         fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
         usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
 
-        nuevo_vuelo = Vuelos(
+        nuevo_vuelo = Vuelos.objects.create(
             id_vuelo = id_vuelo,
             hora_vuelo = hora_vuelo,
             id_avion = avion,
@@ -266,9 +218,32 @@ def add_vuelo(request):
             id_fecha_hora = fecha_hora,
             id_usuario = usuario
         )
+        return redirect("exito")
+    return HttpResponse("Método no permitido", status=405)
 
-        nuevo_vuelo.save()
+def add_checkin(request):
+    if request.method == "POST":
+        id_checkin = request.POST.get("idCheckin")
+        id_vuelo = request.POST.get("idVuelo")
+        rut_pasajero = request.POST.get("rutPasajero")
+        id_estado = request.POST.get("fk_idEstado")
+        id_fecha_hora = request.POST.get("fk_idFecha_hora")
+        id_usuario = request.POST.get("fk_idUsuario")
+        
+        vuelo = get_object_or_404(Vuelos, id_vuelo=id_vuelo)
+        pasajero = get_object_or_404(Pasajeros, rut_pasajero=rut_pasajero)
+        estado = get_object_or_404(Estado, id_estado=id_estado)
+        fecha_hora = get_object_or_404(FechaHora, id_fecha_hora=id_fecha_hora)
+        usuario = get_object_or_404(Usuario, id_usuario=id_usuario)
 
+        nuevo_checkin = Checkin.objects.create(
+            id_checkin = id_checkin,
+            id_vuelo = vuelo,
+            rut_pasajero = pasajero,
+            id_estado = estado,
+            id_fecha_hora = fecha_hora,
+            id_usuario = usuario
+        )
         return redirect("exito")
     return HttpResponse("Método no permitido", status=405)
 
@@ -280,8 +255,8 @@ def add_pasaje(request):
         id_vuelo = request.POST.get("idVuelos")
         rut_pasajero = request.POST.get("rutPasajero")
         id_estado = request.POST.get("fk_idEstado")
-        id_fecha_hora = request.POST.get("fk_idUsuario")
-        id_usuario = request.POST.get("fk_idFecha_hora")
+        id_fecha_hora = request.POST.get("fk_idFecha_hora")
+        id_usuario = request.POST.get("fk_idUsuario")
         id_avion = request.POST.get("idAvion")
 
         asiento = get_object_or_404(Asientos, id_asiento=id_asiento)
@@ -312,8 +287,8 @@ def add_tarjetaEmbarque(request):
         puerta_embarque = request.POST.get("puertaEmbarque")
         id_checkin = request.POST.get("idCheckin")
         id_estado = request.POST.get("fk_idEstado")
-        id_fecha_hora = request.POST.get("fk_idUsuario")
-        id_usuario = request.POST.get("fk_idFecha_hora")
+        id_fecha_hora = request.POST.get("fk_idFecha_hora")
+        id_usuario = request.POST.get("fk_idUsuario")
 
         checkin = get_object_or_404(Checkin, id_checkin=id_checkin)
         estado = get_object_or_404(Estado, id_estado=id_estado)
@@ -337,8 +312,8 @@ def add_transfer(request):
         destino = request.POST.get("destino")
         id_aeropuerto = request.POST.get("idAeropuerto")
         id_estado = request.POST.get("fk_idEstado")
-        id_fecha_hora = request.POST.get("fk_idUsuario")
-        id_usuario = request.POST.get("fk_idFecha_hora")
+        id_fecha_hora = request.POST.get("fk_idFecha_hora")
+        id_usuario = request.POST.get("fk_idUsuario")
 
         aeropuerto = get_object_or_404(Aeropuerto, id_aeropuerto=id_aeropuerto)
         estado = get_object_or_404(Estado, id_estado=id_estado)

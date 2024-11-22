@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from viajes.models import Usuario, Estado, FechaHora, Aeropuerto, ModelosAviones, Aviones, Asientos
+from viajes.models import Usuario, Estado, FechaHora, Aeropuerto, ModelosAviones, Aviones, Asientos, Pasajeros, Checkin, Equipaje, Vuelos, Pasajes, TarjetaEmbarque, Transfer
 
 def read_usuario(request):
     if request.method == "POST":
@@ -102,5 +102,78 @@ def read_asiento(request):
             "usuario": objeto.id_usuario.user_name,
             "idUsuario": objeto.id_usuario.id_usuario
         }
-        return render(request, "asiento.html", ctx)
+        return render(request, "asientos.html", ctx)
+    return HttpResponse("Método no permitido", status=405)
+
+def read_pasajero(request):
+    if request.method == "POST":
+        read_rut_pasajero = request.POST.get("buscarRutPasajero")
+        objeto = get_object_or_404(Pasajeros, rut_pasajero=read_rut_pasajero)
+
+        ctx = {
+            "rut": objeto.rut_pasajero,
+            "nombre": objeto.nombre,
+            "apellido": objeto.apellido,
+            "idAeropuerto": objeto.id_aeropuerto.id_aeropuerto,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario
+        }
+        return render(request, "pasajeros.html", ctx)
+    return HttpResponse("Método no permitido", status=405)
+
+def read_equipaje(request):
+    if request.method == "POST":
+        read_id_equipaje = request.POST.get("buscarIdEquipaje")
+        objeto = get_object_or_404(Equipaje, id_equipaje=read_id_equipaje)
+
+        ctx = {
+            "idEquipaje": objeto.id_equipaje,
+            "pesoEquipaje": objeto.peso_equipaje,
+            "rutPasajero": objeto.rut_pasajero.rut_pasajero,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario
+        }
+        return render(request, "equipaje.html", ctx)
+    return HttpResponse("Método no permitido", status=405)
+
+def read_vuelo(request):
+    if request.method == "POST":
+        read_id_vuelo = request.POST.get("buscarIdVuelo")
+        objeto = get_object_or_404(Vuelos, id_vuelo=read_id_vuelo)
+
+        ctx = {
+            "idVuelo": objeto.id_vuelo,
+            "horaVuelo": objeto.hora_vuelo,
+            "idAvion": objeto.id_avion.id_avion,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario
+        }
+        return render(request, "vuelos.html", ctx)
+    return HttpResponse("Método no permitido", status=405)
+
+def read_checkin(request):
+    if request.method == "POST":
+        read_id_checkin = request.POST.get("buscarIdCheckin")
+        objeto = get_object_or_404(Checkin, id_checkin=read_id_checkin)
+
+        ctx = {
+            "idCheckin": objeto.id_checkin,
+            "idVuelo": objeto.id_vuelo.id_vuelo,
+            "rutPasajero": objeto.rut_pasajero.rut_pasajero,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario
+        }
+        return render(request, "checkin.html", ctx)
     return HttpResponse("Método no permitido", status=405)

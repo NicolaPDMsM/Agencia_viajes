@@ -58,40 +58,37 @@
         <div class="card mb-4" style="border-width: 2px;">
             <div class="card-body">
                 <h3>Ver Asiento</h3>
-                <form action="" method="post" class="form-inline mb-4">
+                <form action="{% url 'read_asiento' %}" method="post" class="form-inline mb-4">
                     {% csrf_token %}
                     <div class="form-group mb-2">
-                        <label for="buscarAsiento" class="mr-2">Buscar asiento por Id</label>
-                        <input type="number" name="buscarIdAsiento" id="buscarAsiento" class="form-control" placeholder="Ingrese el Id del asiento" required>
+                        <label for="buscarIdAsiento" class="mr-2">Buscar asiento por Id</label>
+                        <input type="number" name="buscarIdAsiento" id="buscarIdAsiento" class="form-control" placeholder="Ingrese el Id del asiento" required>
                     </div>
                     <button type="submit" class="btn btn-primary mb-2 ml-2">Buscar Asiento</button>
                 </form>
-                {% if mensaje_error %}
-                    <p class="alert alert-warning">{{ mensaje_error }}</p>
-                {% endif %}
                 {% if idAsiento %}
-                <table class="table table-bordered mb-4">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Id</th>
-                            <th>Clase</th>
-                            <th>Id Avión</th>
-                            <th>Id Estado</th>
-                            <th>Id Usuario</th>
-                            <th>Id Fecha Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ idAsiento }}</td>
-                            <td>{{ clase }}</td>
-                            <td>{{ idAvion }}</td>
-                            <td>{{ idEstado }}</td>
-                            <td>{{ idUsuario }}</td>
-                            <td>{{ fechaHora.day }} / {{ fechaHora.month }} / {{ fechaHora.year }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-bordered mb-4">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Clase</th>
+                                <th>Id Avión</th>
+                                <th>Id Estado</th>
+                                <th>Id Usuario</th>
+                                <th>Id Fecha Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ idAsiento }}</td>
+                                <td>{{ clase }}</td>
+                                <td>{{ idAvion }}</td>
+                                <td>{{ idEstado }}</td>
+                                <td>{{ usuario }}</td>
+                                <td>{{ fechaHora.day }}-{{ fechaHora.month }}-{{ fechaHora.year }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 {% endif %}
             </div>
         </div>
