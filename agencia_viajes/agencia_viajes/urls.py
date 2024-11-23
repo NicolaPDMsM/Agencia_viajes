@@ -104,21 +104,21 @@ urlpatterns = [
     # Pasaje
     path('pasaje', forms.form_pasaje, name="pasaje"),
     path('exito/adds-pasaje/', adds.add_pasaje, name="add_pasaje"),
-    path('exito/delete-pasaje/', adds.add_pasaje, name="add_pasaje"),
-    path('exito/read-pasaje/', adds.add_pasaje, name="add_pasaje"),
-    path('exito/update-pasaje/', adds.add_pasaje, name="add_pasaje"),
+    path('exito/delete-pasaje/', delete.delete_pasaje, name="delete_pasaje"),
+    path('exito/read-pasaje/', read.read_pasaje, name="read_pasaje"),
+    path('exito/update-pasaje/', update.update_pasaje, name="update_pasaje"),
 
     # Tarjeta embarque
     path('tarjeta-embarque', forms.form_tarjetaEmbarque, name="tarjeta_embarque"),
     path('exito/adds-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
-    path('exito/delete-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
-    path('exito/read-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
-    path('exito/update-tarjeta-embarque/', adds.add_tarjetaEmbarque, name="add_tarjeta_embarque"),
+    path('exito/delete-tarjeta-embarque/', delete.delete_tarjetaEmbarque, name="delete_tarjetaEmbarque"),
+    path('exito/read-tarjeta-embarque/', read.read_tarjetaEmbarque, name="read_tarjetaEmbarque"),
+    path('exito/update-tarjeta-embarque/', update.update_tarjetaEmbarque, name="update_tarjetaEmbarque"),
 
     # Transfer
     path('transfer', forms.form_transfer, name="transfer"),
     path('exito/adds-transfer/', adds.add_transfer, name="add_transfer"),
-    path('exito/delete-transfer/', adds.add_transfer, name="add_transfer"),
-    path('exito/read-transfer/', adds.add_transfer, name="add_transfer"),
-    path('exito/update-transfer/', adds.add_transfer, name="add_transfer"),
+    path('exito/delete-transfer/', delete.delete_transfer, name="delete_transfer"),
+    path('exito/read-transfer/', read.read_transfer, name="read_transfer"),
+    path('exito/update-transfer/', update.update_transfer, name="update_transfer"),
 ]

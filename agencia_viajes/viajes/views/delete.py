@@ -130,7 +130,7 @@ def delete_vuelo(request):
 def delete_checkin(request):
     if request.method == "POST":
         delete_rut_pasajero = request.POST.get("deleteIdCheckin")
-        objeto = get_object_or_404(Pasajeros, rut_pasajero=delete_rut_pasajero)
+        objeto = get_object_or_404(Checkin, rut_pasajero=delete_rut_pasajero)
 
         estado_inactivo = Estado.objects.get(id_estado=0)
 
@@ -140,4 +140,49 @@ def delete_checkin(request):
             return redirect("exito")
         else:
             return redirect("checkin")
+    return HttpResponse("Método no permitido", status=405)
+
+def delete_pasaje(request):
+    if request.method == "POST":
+        delete_id_pasaje = request.POST.get("deleteIdPasaje")
+        objeto = get_object_or_404(Pasajes, id_pasaje=delete_id_pasaje)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("pasaje")
+    return HttpResponse("Método no permitido", status=405)
+    
+def delete_tarjetaEmbarque(request):
+    if request.method == "POST":
+        delete_id_embarque = request.POST.get("deleteIdEmbarque")
+        objeto = get_object_or_404(TarjetaEmbarque, id_tarjeta_embarque=delete_id_embarque)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("tarjeta_embarque")
+    return HttpResponse("Método no permitido", status=405)
+
+def delete_transfer(request):
+    if request.method == "POST":
+        delete_id_transfer = request.POST.get("deleteIdTransfer")
+        objeto = get_object_or_404(Transfer, id_transfer=delete_id_transfer)
+
+        estado_inactivo = Estado.objects.get(id_estado=0)
+
+        if objeto.id_estado.id_estado == 1:
+            objeto.id_estado = estado_inactivo
+            objeto.save()
+            return redirect("exito")
+        else:
+            return redirect("transfer")
     return HttpResponse("Método no permitido", status=405)

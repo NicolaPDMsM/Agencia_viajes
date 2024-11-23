@@ -58,7 +58,7 @@
         <div class="card mb-4" style="border-width: 2px;">
             <div class="card-body">
                 <h3>Ver Checkin</h3>
-                <form action="" method="post" class="form-inline mb-4">
+                <form action="{% url 'read_checkin' %}" method="post" class="form-inline mb-4">
                     {% csrf_token %}
                     <div class="form-group mb-2">
                         <label for="buscarIdCheckin" class="mr-2">Buscar un Checkin por su Id</label>
@@ -97,7 +97,7 @@
         <div class="card mb-4" style="border-width: 2px;">
             <div class="card-body">
                 <h3>Actualizar Checkin</h3>
-                <form action="" method="post">
+                <form action="{% url 'update_checkin' %}" method="post">
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -138,7 +138,7 @@
         <div class="card mb-4" style="border-width: 2px;">
             <div class="card-body">
                 <h3>Borrar Checkin</h3>
-                <form action="" method="post">
+                <form action="{% url 'delete_checkin' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="deleteIdCheckin">Borrar un Checkin por el Id</label>

@@ -164,7 +164,7 @@ def read_checkin(request):
     if request.method == "POST":
         read_id_checkin = request.POST.get("buscarIdCheckin")
         objeto = get_object_or_404(Checkin, id_checkin=read_id_checkin)
-
+        
         ctx = {
             "idCheckin": objeto.id_checkin,
             "idVuelo": objeto.id_vuelo.id_vuelo,
@@ -176,4 +176,61 @@ def read_checkin(request):
             "idUsuario": objeto.id_usuario.id_usuario
         }
         return render(request, "checkin.html", ctx)
+    return HttpResponse("Método no permitido", status=405)
+
+def read_pasaje(request):
+    if request.method == "POST":
+        read_id_pasaje = request.POST.get("buscarIdPasaje")
+        objeto = get_object_or_404(Pasajes, id_pasaje=read_id_pasaje)
+
+        ctx = {
+            "idPasaje": objeto.id_pasaje,
+            "codigoVerificatorio": objeto.codigo_verificacion,
+            "idAsiento": objeto.id_asiento.id_asiento,
+            "idVuelo": objeto.id_vuelo.id_vuelo,
+            "rutPasajero": objeto.rut_pasajero.rut_pasajero,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario,
+            "idAvion": objeto.id_avion.id_avion
+        }
+        return render(request, "pasaje.html", ctx)
+    return HttpResponse("Método no permitido", status=405)
+
+def read_tarjetaEmbarque(request):
+    if request.method == "POST":
+        read_id_embarque = request.POST.get("buscarIdEmbarque")
+        objeto = get_object_or_404(TarjetaEmbarque, id_tarjeta_embarque=read_id_embarque)
+
+        ctx = {
+            "idTarjetaEmbarque": objeto.id_tarjeta_embarque,
+            "puertaEmbarque": objeto.puerta_embarque,
+            "idCheckin": objeto.id_checkin.id_checkin,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario,
+        }
+        return render(request, "tarjetaEmbarque.html", ctx)
+    return HttpResponse("Método no permitido", status=405)
+
+def read_transfer(request):
+    if request.method == "POST":
+        read_id_transfer = request.POST.get("buscarIdTransfer")
+        objeto = get_object_or_404(Transfer, id_transfer=read_id_transfer)
+
+        ctx = {
+            "idTransfer": objeto.id_transfer,
+            "destino": objeto.destino,
+            "idAeropuerto": objeto.id_aeropuerto.id_aeropuerto,
+            "idEstado": objeto.id_estado.id_estado,
+            "fechaHora": objeto.id_fecha_hora.fecha_hora,
+            "idFechaHora": objeto.id_fecha_hora.id_fecha_hora,
+            "usuario": objeto.id_usuario.user_name,
+            "idUsuario": objeto.id_usuario.id_usuario,
+        }
+        return render(request, "transfer.html", ctx)
     return HttpResponse("Método no permitido", status=405)
